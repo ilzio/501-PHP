@@ -117,6 +117,19 @@ class Conta
 
 }
 
+/**
+ *
+ */
+class ContaCorrente extends AnotherClass
+{
+
+  function __construct(argument)
+  {
+    # code...
+  }
+}
+
+
 //criacao do objeto como instancia da clase e passando por parametro apenas o nome do titular porque o num conta e o saldo sao definidos por parametro no constructor
 
 
