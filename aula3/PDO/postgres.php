@@ -2,7 +2,7 @@
 
 require 'conexao.php';
 
-//adicionar campos no DB
+//adicionar campos na tabela
 
       // $sql = "INSERT INTO usuarios (usuario,senha) VALUES('lucasm','123')";
 
@@ -18,12 +18,29 @@ require 'conexao.php';
 
 //PEGAR INFORMACAO DO BANCO DE DADOS
 
-$sql = "SELECT * FROM usuarios";
+      // $sql = "SELECT * FROM usuarios";
+      //
+      // $result=$dbPostgres->query($sql);
+      //
+      // $usuarios=$result->fetchAll(PDO::FETCH_ASSOC); //retorna array associativo
+      //
+      // // print_r($result);
+      // echo "<pre>";
+      // print_r($usuarios);
 
-$result=$dbPostgres->query($sql);
 
-$usuarios=$result->fetchAll(PDO::FETCH_ASSOC); //retorna array associativo
+//TRANSACAO -> se houver erro na escrita faz um rollback
+//cuidado : se apenas so um da erro faz rollback de tudo: tudo dentro do try tem que funcionar
 
-// print_r($result);
-echo "<pre>";
-print_r($usuarios);
+try {
+    $dbPostgres->beginTransaction();
+    $sql = "INSERT INTO usuarios (usuario,senha) VALUES('lucasm','123')";
+    $dbPostgres->exec($sql);
+
+
+    $dbPostgres->commit();
+} catch (PDOException $e) { //erro e de tipo PDOException
+    $dbPostgres->rollback();
+
+    echo "Erro:" . $e->getMessage();
+}
