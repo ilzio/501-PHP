@@ -1,0 +1,25 @@
+developer@developer:~$ su
+Senha:
+
+root@developer:/home/developer# mysql
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 10
+Server version: 10.1.21-MariaDB-5+b1 Debian 9.0
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+MariaDB [(none)]> CREATE USER 'developer'@'localhost' IDENTIFIED BY '4linux123';
+Query OK, 0 rows affected (0.05 sec)
+
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON *.* to 'developer'@'localhost';Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> CREATE DATABASE aula03;
+Query OK, 1 row affected (0.00 sec)
+
+exit
+
+accessar mysql -u developer -p
+Enter password:

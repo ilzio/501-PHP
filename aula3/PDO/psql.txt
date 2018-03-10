@@ -1,0 +1,28 @@
+
+root@developer:/home/developer# su postgres
+postgres@developer:/home/developer$ psql
+psql (9.6.6)
+Digite "help" para ajuda.
+
+postgres=# CREATE DATABASE aula03;
+CREATE DATABASE
+
+postgres=# CREATE USER developer PASSWORD '4linux';
+CREATE ROLE
+
+postgres=# ALTER DATABASE aula03 OWNER to developer;
+ALTER DATABASE
+
+postgres=# \q
+
+postgres@developer:/home/developer$ exit
+exit
+
+
+root@developer:/home/developer# psql -h localhost -U developer aula03
+Senha para usuário developer:
+psql (9.6.6)
+conexão SSL (protocolo: TLSv1.2, cifra: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compressão: desabilitado)
+Digite "help" para ajuda.
+
+aula03=>
