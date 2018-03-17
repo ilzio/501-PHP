@@ -3,8 +3,8 @@
 namespace DAO\UsuarioDAO;
 
 use DAO\Conexao\Conexao;
-use PDO;
 use Model\Usuario\Usuario;
+use PDO;
 
 class UsuarioDAO
 {
