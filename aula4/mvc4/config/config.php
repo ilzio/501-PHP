@@ -8,4 +8,4 @@ const DBUSER = 'developer';
 const DBPASS = '4linux';
 const DBNAME = 'aula04';
 const DBHOST = 'localhost';
-const DSN = 'pgsql:host=' . DBHOST . ';dbname=' .DBNAME;
+const DBDSN = 'pgsql:host=' . DBHOST . ';dbname=' .DBNAME;
