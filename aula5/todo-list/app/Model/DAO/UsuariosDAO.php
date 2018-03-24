@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 namespace Model\DAO;
 
@@ -18,13 +18,13 @@ class UsuariosDAO
 
 		$stmt = $this->con->query($sql);
 
-		$collection = [] ;
+		$colection = [];
 
 		while ($register = $stmt->fetchObject($this->entity)) {
-			$collection[] = $register;
+			$colection[] = $register;
 		}
 
-		return $collection;
+		return $colection;
 	}
 
 	public function insert(array $dados){
@@ -44,7 +44,7 @@ class UsuariosDAO
 			$stmt->execute($params);
 
 			$this->con->commit();
-
+			
 		} catch (PDOException $e) {
 			$this->con->rollback();
 
@@ -57,18 +57,18 @@ class UsuariosDAO
 
 		$stmt = $this->con->prepare($sql);
 		$stmt->bindValue(":id",$id);
-
+		$stmt->execute();
 
 		$register = $stmt->fetchObject($this->entity);
 
-		return $register;
+		return $register;	
 	}
 
 	public function update($id,$dados){
 		try {
 			$this->con->beginTransaction();
 
-			$sql = "UPDATE usuarios SET nome=:name, email=:email WHERE id=:id";
+			$sql = "UPDATE tb_usuarios SET nome=:name,email=:email WHERE id=:id";
 
 			$stmt = $this->con->prepare($sql);
 
@@ -85,15 +85,16 @@ class UsuariosDAO
 		}
 	}
 
-	public function login (array $dados)
-	$sql = "SELECT * FROM tb_usuarios WHERE email = :email AND senha = :senha ";
-	$stmt = $this->con->prepare($sql);
-	$stmt->bindValue(":email",$id);
-	$stmt->bindValue(":senha",$id);
+	public function login(array $dados){
+		$sql = "SELECT * FROM tb_usuarios WHERE email = :email AND senha = :senha";
+	
+		$stmt = $this->con->prepare($sql);
+		$stmt->bindValue(":email",$dados['email']);
+		$stmt->bindValue(":senha",$dados['senha']);
+		$stmt->execute();
 
-	$register = $stmt->fetchObject($this->entity);
-	return $register;
+		$register = $stmt->fetchObject($this->entity);
 
-
-
+		return $register;
+	}
 }
